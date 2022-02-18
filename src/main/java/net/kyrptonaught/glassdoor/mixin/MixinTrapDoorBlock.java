@@ -26,7 +26,7 @@ public abstract class MixinTrapDoorBlock {
         ItemStack heldStack = player.getInventory().getMainHandStack();
         if (!(state.getBlock() instanceof BlockGlassTrapDoor) && heldStack.getItem() == Items.GLASS_PANE) {
 
-            BlockState glassDoorState = GlassDoorMod.copyTrapdoorState(state);
+            BlockState glassDoorState = GlassDoorMod.copytrapdoorState(state);
             world.setBlockState(pos, glassDoorState);
 
             if (!player.isCreative()) heldStack.decrement(1);
