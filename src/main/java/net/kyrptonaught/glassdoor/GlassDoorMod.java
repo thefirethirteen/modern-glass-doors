@@ -75,7 +75,7 @@ public class GlassDoorMod implements ModInitializer, ClientModInitializer {
         else if (copyState.getBlock().equals(Blocks.IRON_DOOR)) newState = iron_glassdoor.getDefaultState();
         return newState.with(DoorBlock.FACING, copyState.get(DoorBlock.FACING)).with(DoorBlock.HINGE, copyState.get(DoorBlock.HINGE)).with(DoorBlock.OPEN, copyState.get(DoorBlock.OPEN));
     }
-    public static BlockState copytrapdoorState(BlockState copyState) {
+    public static BlockState copyTrapdoorState(BlockState copyState) {
         if (!(copyState.getBlock() instanceof TrapdoorBlock)) return copyState;
 
         BlockState newState = oak_glasstrapdoor.getDefaultState();
