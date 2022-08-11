@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_left_open",
+  "textures": {
+    "bottom": "glassdoor:block/warped_glassdoor_bottom",
+    "top": "glassdoor:block/warped_glassdoor_top"
+  }
+}
