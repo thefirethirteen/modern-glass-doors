@@ -21,17 +21,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(TrapdoorBlock.class)
 public abstract class MixinTrapDoorBlock {
 
-    @Inject(method = "onUse", at = @At("HEAD"), cancellable = true)
-    private void glassdoor$activate(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> callbackInfoReturnable) {
-        ItemStack heldStack = player.getInventory().getMainHandStack();
-        if (!(state.getBlock() instanceof BlockGlassTrapDoor) && heldStack.getItem() == Items.GLASS_PANE) {
+	@Inject(method = "onUse", at = @At("HEAD"), cancellable = true)
+	private void glassdoor$activate(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> callbackInfoReturnable) {
+		ItemStack heldStack = player.getInventory().getMainHandStack();
+		if (!(state.getBlock() instanceof BlockGlassTrapDoor) && heldStack.getItem() == Items.GLASS_PANE) {
 
-            BlockState glassDoorState = GlassDoorMod.copyTrapdoorState(state);
-            world.setBlockState(pos, glassDoorState);
+			BlockState glassDoorState = GlassDoorMod.copyTrapdoorState(state);
+			world.setBlockState(pos, glassDoorState);
 
-            if (!player.isCreative()) heldStack.decrement(1);
-            callbackInfoReturnable.setReturnValue(ActionResult.SUCCESS);
+			if (!player.isCreative()) heldStack.decrement(1);
+			callbackInfoReturnable.setReturnValue(ActionResult.SUCCESS);
 
-        }
-    }
+		}
+	}
 }

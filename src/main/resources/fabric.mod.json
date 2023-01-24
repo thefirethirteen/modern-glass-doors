@@ -1,35 +1,38 @@
 {
-  "schemaVersion": 1,
-  "id": "glassdoor",
-  "version": "3.1.0-beta.1+1.19",
-  "name": "Glass Doors",
-  "description": "More Prettier Doors",
-  "authors": [
-    "kyrptonaught",
-    "thefirethirteen"
-  ],
-  "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/modern-glass-doors",
-    "sources": "https://github.com/kyrptonaught/Glass-Doors"
-  },
-  "license": "MIT",
-  "icon": "assets/glassdoor/icon.png",
-  "environment": "*",
-  "mixins": [
-    {
-      "config": "net.kyrptonaught.glassdoor.json"
-    }
-  ],
-  "entrypoints": {
-    "main": [
-      "net.kyrptonaught.glassdoor.GlassDoorMod"
-    ],
-    "client" : [
-      "net.kyrptonaught.glassdoor.GlassDoorMod"
-    ]
-  },
-  "depends": {
-    "fabricloader": ">=0.14.0",
-    "fabric": "*"
-  }
+	"schemaVersion": 1,
+	"id": "glassdoor",
+	"version": "${version}",
+	"name": "Glass Doors",
+	"description": "More Prettier Doors",
+	"authors": [
+		"kyrptonaught",
+		"thefirethirteen"
+	],
+	"contact": {
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/modern-glass-doors",
+		"issues": "https://github.com/ReviversMC/modern-glass-doors/issues",
+		"sources": "https://github.com/ReviversMC/modern-glass-doors"
+	},
+	"license": "MIT",
+	"icon": "assets/glassdoor/icon.png",
+	"environment": "*",
+	"mixins": [
+		{
+			"config": "net.kyrptonaught.glassdoor.json"
+		}
+	],
+	"entrypoints": {
+		"main": [
+			"net.kyrptonaught.glassdoor.GlassDoorMod"
+		],
+		"client" : [
+			"net.kyrptonaught.glassdoor.GlassDoorMod"
+		]
+	},
+	"depends": {
+		"minecraft": ">=1.19",
+		"fabric-item-api-v1": "*",
+		"fabric-item-groups-v0": "*",
+		"fabric-blockrenderlayer-v1": "*"
+	}
 }

@@ -23,23 +23,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(DoorBlock.class)
 public abstract class MixinDoorBlock {
 
-    @Inject(method = "onUse", at = @At("HEAD"), cancellable = true)
-    private void glassdoor$activate(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> callbackInfoReturnable) {
-        ItemStack heldStack = player.getInventory().getMainHandStack();
-        if (!(state.getBlock() instanceof BlockGlassDoor) && heldStack.getItem() == Items.GLASS_PANE) {
-            if (state.get(DoorBlock.HALF) == DoubleBlockHalf.UPPER) pos = pos.down();
+	@Inject(method = "onUse", at = @At("HEAD"), cancellable = true)
+	private void glassdoor$activate(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> callbackInfoReturnable) {
+		ItemStack heldStack = player.getInventory().getMainHandStack();
+		if (!(state.getBlock() instanceof BlockGlassDoor) && heldStack.getItem() == Items.GLASS_PANE) {
+			if (state.get(DoorBlock.HALF) == DoubleBlockHalf.UPPER) pos = pos.down();
 
-            BlockState glassDoorState = GlassDoorMod.copyState(state);
+			BlockState glassDoorState = GlassDoorMod.copyState(state);
 
-            world.setBlockState(pos, Blocks.AIR.getDefaultState());
-            world.setBlockState(pos.up(), Blocks.AIR.getDefaultState());
+			world.setBlockState(pos, Blocks.AIR.getDefaultState());
+			world.setBlockState(pos.up(), Blocks.AIR.getDefaultState());
 
-            world.setBlockState(pos, glassDoorState.with(DoorBlock.HALF, DoubleBlockHalf.LOWER));
-            world.setBlockState(pos.up(), glassDoorState.with(DoorBlock.HALF, DoubleBlockHalf.UPPER));
+			world.setBlockState(pos, glassDoorState.with(DoorBlock.HALF, DoubleBlockHalf.LOWER));
+			world.setBlockState(pos.up(), glassDoorState.with(DoorBlock.HALF, DoubleBlockHalf.UPPER));
 
-            if (!player.isCreative()) heldStack.decrement(1);
-            callbackInfoReturnable.setReturnValue(ActionResult.SUCCESS);
+			if (!player.isCreative()) heldStack.decrement(1);
+			callbackInfoReturnable.setReturnValue(ActionResult.SUCCESS);
 
-        }
-    }
+		}
+	}
 }
