@@ -30,7 +30,7 @@
 		]
 	},
 	"depends": {
-		"minecraft": ">=1.19",
+		"minecraft": ">=1.19.3",
 		"fabric-item-api-v1": "*",
 		"fabric-item-groups-v0": "*",
 		"fabric-blockrenderlayer-v1": "*"
