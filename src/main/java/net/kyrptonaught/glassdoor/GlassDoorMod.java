@@ -3,9 +3,12 @@ package net.kyrptonaught.glassdoor;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.DoorBlock;
+import net.minecraft.block.TrapdoorBlock;
 import net.minecraft.client.render.RenderLayer;
-
 
 public class GlassDoorMod implements ModInitializer, ClientModInitializer {
 	static final String MOD_ID = "glassdoor";
@@ -52,6 +55,7 @@ public class GlassDoorMod implements ModInitializer, ClientModInitializer {
 		crimson_glasstrapdoor = new BlockGlassTrapDoor(Block.Settings.copy(Blocks.CRIMSON_TRAPDOOR), "crimson_glasstrapdoor");
 		warped_glasstrapdoor = new BlockGlassTrapDoor(Block.Settings.copy(Blocks.WARPED_TRAPDOOR), "warped_glasstrapdoor");
 	}
+
 	@Override
 	public void onInitializeClient() {
 		BlockRenderLayerMap.INSTANCE.putBlock(oak_glassdoor, RenderLayer.getCutout());
@@ -73,34 +77,63 @@ public class GlassDoorMod implements ModInitializer, ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(iron_glasstrapdoor, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(crimson_glasstrapdoor, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(warped_glasstrapdoor, RenderLayer.getCutout());
-
 	}
+
 	public static BlockState copyState(BlockState copyState) {
 		if (!(copyState.getBlock() instanceof DoorBlock)) return copyState;
 
 		BlockState newState = oak_glassdoor.getDefaultState();
-		if (copyState.getBlock().equals(Blocks.JUNGLE_DOOR)) newState = jungle_glassdoor.getDefaultState();
-		else if (copyState.getBlock().equals(Blocks.BIRCH_DOOR)) newState = birch_glassdoor.getDefaultState();
-		else if (copyState.getBlock().equals(Blocks.SPRUCE_DOOR)) newState = spruce_glassdoor.getDefaultState();
-		else if (copyState.getBlock().equals(Blocks.ACACIA_DOOR)) newState = acacia_glassdoor.getDefaultState();
-		else if (copyState.getBlock().equals(Blocks.DARK_OAK_DOOR)) newState = dark_oak_glassdoor.getDefaultState();
-		else if (copyState.getBlock().equals(Blocks.IRON_DOOR)) newState = iron_glassdoor.getDefaultState();
-		else if (copyState.getBlock().equals(Blocks.CRIMSON_DOOR)) newState = crimson_glassdoor.getDefaultState();
-		else if (copyState.getBlock().equals(Blocks.WARPED_DOOR)) newState = warped_glassdoor.getDefaultState();
-		return newState.with(DoorBlock.FACING, copyState.get(DoorBlock.FACING)).with(DoorBlock.HINGE, copyState.get(DoorBlock.HINGE)).with(DoorBlock.OPEN, copyState.get(DoorBlock.OPEN));
+
+		if (copyState.getBlock().equals(Blocks.JUNGLE_DOOR)) {
+			newState = jungle_glassdoor.getDefaultState();
+		} else if (copyState.getBlock().equals(Blocks.BIRCH_DOOR)) {
+			newState = birch_glassdoor.getDefaultState();
+		} else if (copyState.getBlock().equals(Blocks.SPRUCE_DOOR)) {
+			newState = spruce_glassdoor.getDefaultState();
+		} else if (copyState.getBlock().equals(Blocks.ACACIA_DOOR)) {
+			newState = acacia_glassdoor.getDefaultState();
+		} else if (copyState.getBlock().equals(Blocks.DARK_OAK_DOOR)) {
+			newState = dark_oak_glassdoor.getDefaultState();
+		} else if (copyState.getBlock().equals(Blocks.IRON_DOOR)) {
+			newState = iron_glassdoor.getDefaultState();
+		} else if (copyState.getBlock().equals(Blocks.CRIMSON_DOOR)) {
+			newState = crimson_glassdoor.getDefaultState();
+		} else if (copyState.getBlock().equals(Blocks.WARPED_DOOR)) {
+			newState = warped_glassdoor.getDefaultState();
+		}
+
+		return newState.with(DoorBlock.FACING, copyState.get(DoorBlock.FACING))
+				.with(DoorBlock.HINGE, copyState.get(DoorBlock.HINGE))
+				.with(DoorBlock.OPEN, copyState.get(DoorBlock.OPEN));
 	}
+
 	public static BlockState copyTrapdoorState(BlockState copyState) {
 		if (!(copyState.getBlock() instanceof TrapdoorBlock)) return copyState;
 
 		BlockState newState = oak_glasstrapdoor.getDefaultState();
-		if (copyState.getBlock().equals(Blocks.JUNGLE_TRAPDOOR)) newState = jungle_glasstrapdoor.getDefaultState();
-		else if (copyState.getBlock().equals(Blocks.BIRCH_TRAPDOOR)) newState = birch_glasstrapdoor.getDefaultState();
-		else if (copyState.getBlock().equals(Blocks.SPRUCE_TRAPDOOR)) newState = spruce_glasstrapdoor.getDefaultState();
-		else if (copyState.getBlock().equals(Blocks.ACACIA_TRAPDOOR)) newState = acacia_glasstrapdoor.getDefaultState();
-		else if (copyState.getBlock().equals(Blocks.DARK_OAK_TRAPDOOR)) newState = dark_oak_glasstrapdoor.getDefaultState();
-		else if (copyState.getBlock().equals(Blocks.IRON_TRAPDOOR)) newState = iron_glasstrapdoor.getDefaultState();
-		else if (copyState.getBlock().equals(Blocks.CRIMSON_TRAPDOOR)) newState = crimson_glasstrapdoor.getDefaultState();
-		else if (copyState.getBlock().equals(Blocks.WARPED_TRAPDOOR)) newState = warped_glasstrapdoor.getDefaultState();
-		return newState.with(TrapdoorBlock.FACING, copyState.get(TrapdoorBlock.FACING)).with(TrapdoorBlock.OPEN, copyState.get(TrapdoorBlock.OPEN)).with(TrapdoorBlock.HALF, copyState.get(TrapdoorBlock.HALF)).with(TrapdoorBlock.POWERED, copyState.get(TrapdoorBlock.POWERED)).with(TrapdoorBlock.WATERLOGGED, copyState.get(TrapdoorBlock.WATERLOGGED));
+
+		if (copyState.getBlock().equals(Blocks.JUNGLE_TRAPDOOR)) {
+			newState = jungle_glasstrapdoor.getDefaultState();
+		} else if (copyState.getBlock().equals(Blocks.BIRCH_TRAPDOOR)) {
+			newState = birch_glasstrapdoor.getDefaultState();
+		} else if (copyState.getBlock().equals(Blocks.SPRUCE_TRAPDOOR)) {
+			newState = spruce_glasstrapdoor.getDefaultState();
+		} else if (copyState.getBlock().equals(Blocks.ACACIA_TRAPDOOR)) {
+			newState = acacia_glasstrapdoor.getDefaultState();
+		} else if (copyState.getBlock().equals(Blocks.DARK_OAK_TRAPDOOR)) {
+			newState = dark_oak_glasstrapdoor.getDefaultState();
+		} else if (copyState.getBlock().equals(Blocks.IRON_TRAPDOOR)) {
+			newState = iron_glasstrapdoor.getDefaultState();
+		} else if (copyState.getBlock().equals(Blocks.CRIMSON_TRAPDOOR)) {
+			newState = crimson_glasstrapdoor.getDefaultState();
+		} else if (copyState.getBlock().equals(Blocks.WARPED_TRAPDOOR)) {
+			newState = warped_glasstrapdoor.getDefaultState();
+		}
+
+		return newState.with(TrapdoorBlock.FACING, copyState.get(TrapdoorBlock.FACING))
+				.with(TrapdoorBlock.OPEN, copyState.get(TrapdoorBlock.OPEN))
+				.with(TrapdoorBlock.HALF, copyState.get(TrapdoorBlock.HALF))
+				.with(TrapdoorBlock.POWERED, copyState.get(TrapdoorBlock.POWERED))
+				.with(TrapdoorBlock.WATERLOGGED, copyState.get(TrapdoorBlock.WATERLOGGED));
 	}
 }

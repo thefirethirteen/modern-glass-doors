@@ -1,7 +1,5 @@
 package net.kyrptonaught.glassdoor.mixin;
 
-import net.kyrptonaught.glassdoor.BlockGlassDoor;
-import net.kyrptonaught.glassdoor.GlassDoorMod;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.DoorBlock;
@@ -19,13 +17,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import net.kyrptonaught.glassdoor.BlockGlassDoor;
+import net.kyrptonaught.glassdoor.GlassDoorMod;
 
 @Mixin(DoorBlock.class)
 public abstract class MixinDoorBlock {
-
 	@Inject(method = "onUse", at = @At("HEAD"), cancellable = true)
 	private void glassdoor$activate(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> callbackInfoReturnable) {
 		ItemStack heldStack = player.getInventory().getMainHandStack();
+
 		if (!(state.getBlock() instanceof BlockGlassDoor) && heldStack.getItem() == Items.GLASS_PANE) {
 			if (state.get(DoorBlock.HALF) == DoubleBlockHalf.UPPER) pos = pos.down();
 
@@ -39,7 +39,6 @@ public abstract class MixinDoorBlock {
 
 			if (!player.isCreative()) heldStack.decrement(1);
 			callbackInfoReturnable.setReturnValue(ActionResult.SUCCESS);
-
 		}
 	}
 }
