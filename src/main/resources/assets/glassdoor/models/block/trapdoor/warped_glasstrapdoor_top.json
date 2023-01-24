@@ -1,7 +1,7 @@
 {
-  "parent": "glassdoor:block/template/template_trapdoor_top",
-  "textures": {
-    "texture": "glassdoor:block/warped_glasstrapdoor",
-    "texture2": "minecraft:block/warped_trapdoor"
-  }
+	"parent": "glassdoor:block/template/template_trapdoor_top",
+	"textures": {
+		"texture": "glassdoor:block/warped_glasstrapdoor",
+		"texture2": "minecraft:block/warped_trapdoor"
+	}
 }
